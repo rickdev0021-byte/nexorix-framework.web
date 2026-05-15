@@ -185,6 +185,30 @@ end)`;
 		<div class="max-w-3xl mx-auto text-left space-y-6">
 			<div class="card">
 				<div class="flex items-center gap-3 mb-2">
+					<span class="px-2 py-0.5 rounded bg-primary/20 text-primary-light text-xs font-mono">v1.0.1</span>
+					<span class="text-slate-500 text-sm">15/05/2026</span>
+				</div>
+				<h3 class="font-medium text-white mb-2">Novas Natives no Runtime (Lua.dll)</h3>
+				<ul class="text-sm text-slate-400 space-y-1">
+					<li>• <code class="text-primary-light">nx_CreateDynamicObject</code> / <code class="text-primary-light">nx_DestroyDynamicObject</code> / <code class="text-primary-light">nx_IsValidDynamicObject</code></li>
+					<li>• <code class="text-primary-light">nx_MoveDynamicObject</code> / <code class="text-primary-light">nx_StopDynamicObject</code> / <code class="text-primary-light">nx_IsDynamicObjectMoving</code></li>
+					<li>• <code class="text-primary-light">nx_GetDynamicObjectPos</code> / <code class="text-primary-light">nx_SetDynamicObjectPos</code></li>
+					<li>• <code class="text-primary-light">nx_GetDynamicObjectRot</code> / <code class="text-primary-light">nx_SetDynamicObjectRot</code></li>
+					<li>• <code class="text-primary-light">nx_SetDynamicObjectMaterial</code> / <code class="text-primary-light">nx_SetDynamicObjectMaterialText</code></li>
+					<li>• <code class="text-primary-light">nx_SetObjectMaterialText</code></li>
+					<li>• <code class="text-primary-light">nx_DisableAdminAnimations</code></li>
+					<li>• <code class="text-primary-light">nx_RemoveBuildingForPlayer</code></li>
+					<li>• <code class="text-primary-light">nx_InterpolateCameraPos</code> / <code class="text-primary-light">nx_InterpolateCameraLookAt</code></li>
+					<li>• <code class="text-primary-light">nx_AttachCameraToObject</code></li>
+					<li>• <code class="text-primary-light">nx_DisableRemoteVehicleCollisions</code></li>
+					<li>• <code class="text-primary-light">nx_SetPlayerWorldBounds</code> / <code class="text-primary-light">nx_ClearPlayerWorldBounds</code></li>
+					<li>• <code class="text-primary-light">nx_GetPlayerCount</code></li>
+					<li>• Config: <code class="text-primary-light">game.use_entry_exit_markers</code> / <code class="text-primary-light">game.use_stunt_bonuses</code></li>
+				</ul>
+			</div>
+
+			<div class="card">
+				<div class="flex items-center gap-3 mb-2">
 					<span class="px-2 py-0.5 rounded bg-primary/20 text-primary-light text-xs font-mono">v1.0</span>
 					<span class="text-slate-500 text-sm">15/05/2026</span>
 				</div>
@@ -198,7 +222,6 @@ end)`;
 					<li>• Discord Bot com 3 comandos (!perfil, !players, !status)</li>
 					<li>• Sistemas configuraveis: Servidor On/Off, Entrada/Saida, Logs Chat</li>
 					<li>• Hot-Reload de modulos em tempo real (/reload all)</li>
-					<li>• Natives do Streamer Plugin (CreateDynamicObject, MaterialText)</li>
 					<li>• Database SQLite integrado com migrations automaticas</li>
 					<li>• Suporte Windows e Linux</li>
 				</ul>
