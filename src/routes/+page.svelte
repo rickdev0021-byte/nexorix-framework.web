@@ -100,14 +100,28 @@ end)`;
 	<!-- Update Toast -->
 	{#if showUpdate}
 	<div class="fixed top-4 right-4 z-50 max-w-sm animate-slide-in">
-		<div class="bg-surface border border-primary/30 rounded-lg px-4 py-3 shadow-lg shadow-primary/5">
-			<div class="flex items-start gap-3">
-				<span class="w-2 h-2 mt-2 rounded-full bg-primary animate-pulse flex-shrink-0"></span>
-				<div class="flex-1 min-w-0">
-					<p class="text-sm font-medium text-white">v1.0.1 disponivel</p>
-					<p class="text-xs text-slate-400 mt-0.5">Novas natives: DynamicObject, MaterialText, Camera</p>
-				</div>
-				<button onclick={dismissUpdate} class="text-slate-500 hover:text-white transition-colors text-lg leading-none">&times;</button>
+		<div class="bg-surface border border-primary/30 rounded-lg shadow-lg shadow-primary/5 overflow-hidden">
+			<div class="flex items-center justify-between px-4 py-2.5 border-b border-white/5">
+				<span class="text-xs font-mono text-primary-light">v1.0.1</span>
+				<button onclick={dismissUpdate} class="text-slate-500 hover:text-white transition-colors text-sm">&times;</button>
+			</div>
+			<div class="px-4 py-3 max-h-60 overflow-y-auto text-xs text-slate-400 space-y-1">
+				<p class="text-white text-sm font-medium mb-2">Novas natives no runtime</p>
+				<p>• nx_CreateDynamicObject / Destroy / IsValid</p>
+				<p>• nx_MoveDynamicObject / Stop / IsMoving</p>
+				<p>• nx_Get/SetDynamicObjectPos</p>
+				<p>• nx_Get/SetDynamicObjectRot</p>
+				<p>• nx_SetDynamicObjectMaterial / MaterialText</p>
+				<p>• nx_SetObjectMaterialText</p>
+				<p>• nx_RemoveBuildingForPlayer</p>
+				<p>• nx_InterpolateCameraPos / LookAt</p>
+				<p>• nx_AttachCameraToObject</p>
+				<p>• nx_DisableRemoteVehicleCollisions</p>
+				<p>• nx_Set/ClearPlayerWorldBounds</p>
+				<p>• nx_GetPlayerCount</p>
+				<p class="text-white text-sm font-medium mt-3 mb-1">Config</p>
+				<p>• game.use_entry_exit_markers</p>
+				<p>• game.use_stunt_bonuses</p>
 			</div>
 		</div>
 	</div>
