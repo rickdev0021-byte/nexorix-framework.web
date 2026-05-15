@@ -44,7 +44,16 @@ end)`;
 	let displayedCommand = $state('');
 	let commandDone = $state(false);
 
+	// Banner de atualização
+	let showUpdate = $state(false);
+	const UPDATE_KEY = 'nx_update_v1.0.1';
+
 	onMount(() => {
+		// Verificar se já viu a atualização
+		if (!localStorage.getItem(UPDATE_KEY)) {
+			showUpdate = true;
+		}
+
 		// Animação do código
 		let i = 0;
 		const speed = 18;
@@ -73,6 +82,11 @@ end)`;
 		}
 		setTimeout(typeCmdChar, 300);
 	});
+
+	function dismissUpdate() {
+		showUpdate = false;
+		localStorage.setItem(UPDATE_KEY, 'true');
+	}
 </script>
 
 <svelte:head>
@@ -82,6 +96,22 @@ end)`;
 
 <!-- Hero Section -->
 <section class="relative overflow-hidden">
+
+	<!-- Update Toast -->
+	{#if showUpdate}
+	<div class="fixed top-4 right-4 z-50 max-w-sm animate-slide-in">
+		<div class="bg-surface border border-primary/30 rounded-lg px-4 py-3 shadow-lg shadow-primary/5">
+			<div class="flex items-start gap-3">
+				<span class="w-2 h-2 mt-2 rounded-full bg-primary animate-pulse flex-shrink-0"></span>
+				<div class="flex-1 min-w-0">
+					<p class="text-sm font-medium text-white">v1.0.1 disponivel</p>
+					<p class="text-xs text-slate-400 mt-0.5">Novas natives: DynamicObject, MaterialText, Camera</p>
+				</div>
+				<button onclick={dismissUpdate} class="text-slate-500 hover:text-white transition-colors text-lg leading-none">&times;</button>
+			</div>
+		</div>
+	</div>
+	{/if}
 	<!-- Background gradient -->
 	<div class="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent"></div>
 	<div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]"></div>
@@ -172,64 +202,6 @@ end)`;
 	</div>
 </section>
 
-<!-- Documentation CTA -->
-<section class="py-20 border-t border-white/5">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-		<h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
-			Atualizacoes Recentes
-		</h2>
-		<p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
-			Ultimas mudancas no framework
-		</p>
-
-		<div class="max-w-3xl mx-auto text-left space-y-6">
-			<div class="card">
-				<div class="flex items-center gap-3 mb-2">
-					<span class="px-2 py-0.5 rounded bg-primary/20 text-primary-light text-xs font-mono">v1.0.1</span>
-					<span class="text-slate-500 text-sm">15/05/2026</span>
-				</div>
-				<h3 class="font-medium text-white mb-2">Novas Natives no Runtime (Lua.dll)</h3>
-				<ul class="text-sm text-slate-400 space-y-1">
-					<li>• <code class="text-primary-light">nx_CreateDynamicObject</code> / <code class="text-primary-light">nx_DestroyDynamicObject</code> / <code class="text-primary-light">nx_IsValidDynamicObject</code></li>
-					<li>• <code class="text-primary-light">nx_MoveDynamicObject</code> / <code class="text-primary-light">nx_StopDynamicObject</code> / <code class="text-primary-light">nx_IsDynamicObjectMoving</code></li>
-					<li>• <code class="text-primary-light">nx_GetDynamicObjectPos</code> / <code class="text-primary-light">nx_SetDynamicObjectPos</code></li>
-					<li>• <code class="text-primary-light">nx_GetDynamicObjectRot</code> / <code class="text-primary-light">nx_SetDynamicObjectRot</code></li>
-					<li>• <code class="text-primary-light">nx_SetDynamicObjectMaterial</code> / <code class="text-primary-light">nx_SetDynamicObjectMaterialText</code></li>
-					<li>• <code class="text-primary-light">nx_SetObjectMaterialText</code></li>
-					<li>• <code class="text-primary-light">nx_DisableAdminAnimations</code></li>
-					<li>• <code class="text-primary-light">nx_RemoveBuildingForPlayer</code></li>
-					<li>• <code class="text-primary-light">nx_InterpolateCameraPos</code> / <code class="text-primary-light">nx_InterpolateCameraLookAt</code></li>
-					<li>• <code class="text-primary-light">nx_AttachCameraToObject</code></li>
-					<li>• <code class="text-primary-light">nx_DisableRemoteVehicleCollisions</code></li>
-					<li>• <code class="text-primary-light">nx_SetPlayerWorldBounds</code> / <code class="text-primary-light">nx_ClearPlayerWorldBounds</code></li>
-					<li>• <code class="text-primary-light">nx_GetPlayerCount</code></li>
-					<li>• Config: <code class="text-primary-light">game.use_entry_exit_markers</code> / <code class="text-primary-light">game.use_stunt_bonuses</code></li>
-				</ul>
-			</div>
-
-			<div class="card">
-				<div class="flex items-center gap-3 mb-2">
-					<span class="px-2 py-0.5 rounded bg-primary/20 text-primary-light text-xs font-mono">v1.0</span>
-					<span class="text-slate-500 text-sm">15/05/2026</span>
-				</div>
-				<h3 class="font-medium text-white mb-2">Gamemode Base Modular</h3>
-				<ul class="text-sm text-slate-400 space-y-1">
-					<li>• Sistema de Registro/Login completo (Senha, Sexo, Idade, Cidade)</li>
-					<li>• Sistema Admin com 6 niveis (Ajudante a Fundador)</li>
-					<li>• 4 Organizacoes (Franca, Turquia, Policia de Nexorix, COT)</li>
-					<li>• Comandos basicos: /rg, /ajuda, /admins, /gps, /orgs, /skin, /car</li>
-					<li>• HUD estilo Vice City (vida, colete, fome, sede, energia)</li>
-					<li>• Discord Bot com 3 comandos (!perfil, !players, !status)</li>
-					<li>• Sistemas configuraveis: Servidor On/Off, Entrada/Saida, Logs Chat</li>
-					<li>• Hot-Reload de modulos em tempo real (/reload all)</li>
-					<li>• Database SQLite integrado com migrations automaticas</li>
-					<li>• Suporte Windows e Linux</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</section>
-
 <!-- Docs Section -->
 <section class="py-20 border-t border-white/5">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -270,5 +242,14 @@ end)`;
 	@keyframes blink {
 		0%, 50% { opacity: 1; }
 		51%, 100% { opacity: 0; }
+	}
+
+	@keyframes slide-in {
+		from { transform: translateX(100%); opacity: 0; }
+		to { transform: translateX(0); opacity: 1; }
+	}
+
+	.animate-slide-in {
+		animation: slide-in 0.3s ease-out;
 	}
 </style>
