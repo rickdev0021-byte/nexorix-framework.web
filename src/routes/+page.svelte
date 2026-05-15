@@ -40,7 +40,7 @@ end)`;
 	let typingDone = $state(false);
 
 	// Animação de digitação do comando git clone
-	const gitCommand = 'git clone https://github.com/NexorixGroup/nexorix-framework-gm.linux';
+	const gitCommand = 'git clone https://github.com/NexorixGroup/nexorix-framework-gm.windows';
 	let displayedCommand = $state('');
 	let commandDone = $state(false);
 
@@ -173,6 +173,41 @@ end)`;
 </section>
 
 <!-- Documentation CTA -->
+<section class="py-20 border-t border-white/5">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+		<h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+			Atualizacoes Recentes
+		</h2>
+		<p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
+			Ultimas mudancas no framework
+		</p>
+
+		<div class="max-w-3xl mx-auto text-left space-y-6">
+			<div class="card">
+				<div class="flex items-center gap-3 mb-2">
+					<span class="px-2 py-0.5 rounded bg-primary/20 text-primary-light text-xs font-mono">v1.0</span>
+					<span class="text-slate-500 text-sm">15/05/2026</span>
+				</div>
+				<h3 class="font-medium text-white mb-2">Gamemode Base Modular</h3>
+				<ul class="text-sm text-slate-400 space-y-1">
+					<li>• Sistema de Registro/Login completo (Senha, Sexo, Idade, Cidade)</li>
+					<li>• Sistema Admin com 6 niveis (Ajudante a Fundador)</li>
+					<li>• 4 Organizacoes (Franca, Turquia, Policia de Nexorix, COT)</li>
+					<li>• Comandos basicos: /rg, /ajuda, /admins, /gps, /orgs, /skin, /car</li>
+					<li>• HUD estilo Vice City (vida, colete, fome, sede, energia)</li>
+					<li>• Discord Bot com 3 comandos (!perfil, !players, !status)</li>
+					<li>• Sistemas configuraveis: Servidor On/Off, Entrada/Saida, Logs Chat</li>
+					<li>• Hot-Reload de modulos em tempo real (/reload all)</li>
+					<li>• Natives do Streamer Plugin (CreateDynamicObject, MaterialText)</li>
+					<li>• Database SQLite integrado com migrations automaticas</li>
+					<li>• Suporte Windows e Linux</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Docs Section -->
 <section class="py-20 border-t border-white/5">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 		<h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
