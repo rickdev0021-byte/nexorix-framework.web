@@ -198,3 +198,184 @@ nx_SetTimer(function()
     end
 end, 200, true)`}</code></pre>
 </div>
+
+<h2>Dynamic Objects (Streamer)</h2>
+
+<p>Objetos do mundo com streaming automático. Substitui o plugin Streamer do SA-MP.</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>Função</th>
+			<th>Descrição</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>nx_CreateDynamicObject(model, x, y, z, rx, ry, rz, world, interior, player, streamdist, drawdist)</code></td>
+			<td>Cria objeto com streaming. Retorna objectid.</td>
+		</tr>
+		<tr>
+			<td><code>nx_DestroyDynamicObject(objectid)</code></td>
+			<td>Destrói o objeto</td>
+		</tr>
+		<tr>
+			<td><code>nx_IsValidDynamicObject(objectid)</code></td>
+			<td>Verifica se o objeto existe</td>
+		</tr>
+		<tr>
+			<td><code>nx_GetDynamicObjectPos(objectid)</code></td>
+			<td>Retorna x, y, z</td>
+		</tr>
+		<tr>
+			<td><code>nx_SetDynamicObjectPos(objectid, x, y, z)</code></td>
+			<td>Define posição</td>
+		</tr>
+		<tr>
+			<td><code>nx_GetDynamicObjectRot(objectid)</code></td>
+			<td>Retorna rx, ry, rz</td>
+		</tr>
+		<tr>
+			<td><code>nx_SetDynamicObjectRot(objectid, rx, ry, rz)</code></td>
+			<td>Define rotação</td>
+		</tr>
+		<tr>
+			<td><code>nx_MoveDynamicObject(objectid, x, y, z, speed, rx, ry, rz)</code></td>
+			<td>Move o objeto para uma posição</td>
+		</tr>
+		<tr>
+			<td><code>nx_StopDynamicObject(objectid)</code></td>
+			<td>Para o movimento</td>
+		</tr>
+		<tr>
+			<td><code>nx_IsDynamicObjectMoving(objectid)</code></td>
+			<td>Verifica se está em movimento</td>
+		</tr>
+		<tr>
+			<td><code>nx_SetDynamicObjectMaterial(objectid, index, model, txd, texture, color)</code></td>
+			<td>Aplica textura ao objeto</td>
+		</tr>
+		<tr>
+			<td><code>nx_SetDynamicObjectMaterialText(objectid, index, text, size, font, fontsize, bold, fontcolor, bgcolor, align)</code></td>
+			<td>Aplica texto como material</td>
+		</tr>
+		<tr>
+			<td><code>nx_RemoveBuildingForPlayer(playerid, model, x, y, z, radius)</code></td>
+			<td>Remove um building do mapa para o player</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>Exemplo: Placa com texto</h3>
+
+<div class="code-block">
+	<pre><code>{`NX.Hook("OnGameModeInit", function()
+    -- Remover building original
+    -- (feito no OnPlayerConnect para cada player)
+
+    -- Criar placa com texto roxo
+    local placa = nx_CreateDynamicObject(13759, 1405.0, -812.9, 75.9,
+        90.0, 0.0, 1.1, -1, -1, -1, 300.0, 300.0)
+    nx_SetDynamicObjectMaterialText(placa, 0, "{9B59B6}NEXORIX",
+        130, "Arial", 100, true, 0x00000000, 0x00000000, 1)
+end)
+
+NX.Hook("OnPlayerConnect", function(playerid)
+    nx_RemoveBuildingForPlayer(playerid, 13759, 1413.4, -804.7, 83.4, 0.25)
+end)`}</code></pre>
+</div>
+
+<h3>Exemplo: Portão automático</h3>
+
+<div class="code-block">
+	<pre><code>{`local portao = nil
+
+NX.Hook("OnGameModeInit", function()
+    portao = nx_CreateDynamicObject(980, 1000.0, 2000.0, 15.0,
+        0.0, 0.0, 0.0, -1, -1, -1, 100.0, 100.0)
+end)
+
+NX.RegisterCommand("abrir", function(pid)
+    nx_MoveDynamicObject(portao, 1000.0, 2000.0, 20.0, 2.0)
+    nx_SendClientMessage(pid, NX.COLOR.GREEN, ">> Portao aberto!")
+end)
+
+NX.RegisterCommand("fechar", function(pid)
+    nx_MoveDynamicObject(portao, 1000.0, 2000.0, 15.0, 2.0)
+    nx_SendClientMessage(pid, NX.COLOR.GREEN, ">> Portao fechado!")
+end)`}</code></pre>
+</div>
+
+<h2>NX.UI — Framework Declarativo</h2>
+
+<p>Wrapper de alto nível que cria TextDraws automaticamente. Ideal para HUDs rápidas sem gerenciar IDs manualmente.</p>
+
+<h3>NX.UI.Bar — Barra de Progresso</h3>
+
+<div class="code-block">
+	<pre><code>{`local vida_bar = NX.UI.Bar(playerid, {
+    x = 500, y = 400,
+    width = 100, height = 8,
+    color = 0xFF0000FF,      -- vermelho
+    bg_color = 0x333333FF,   -- cinza escuro
+    value = 100              -- 0 a 100
+})
+
+-- Atualizar valor
+vida_bar:SetValue(75)
+
+-- Destruir
+vida_bar:Destroy()`}</code></pre>
+</div>
+
+<h3>NX.UI.Text — Elemento de Texto</h3>
+
+<div class="code-block">
+	<pre><code>{`local titulo = NX.UI.Text(playerid, {
+    x = 320, y = 10,
+    text = "Nexorix Server",
+    color = 0x9B59B6FF,
+    font = 2,
+    size = 1.2
+})
+
+-- Atualizar texto
+titulo:SetText("Novo Titulo")
+
+-- Destruir
+titulo:Destroy()`}</code></pre>
+</div>
+
+<h3>NX.UI.Box — Caixa/Painel</h3>
+
+<div class="code-block">
+	<pre><code>{`local painel = NX.UI.Box(playerid, {
+    x = 10, y = 300,
+    width = 200, height = 100,
+    color = 0x000000AA   -- preto semi-transparente
+})
+
+painel:Destroy()`}</code></pre>
+</div>
+
+<h3>Exemplo Completo: HUD de Status</h3>
+
+<div class="code-block">
+	<pre><code>{`NX.Hook("OnPlayerSpawn", function(pid)
+    -- Painel de fundo
+    NX.UI.Box(pid, {x=490, y=395, width=120, height=50, color=0x00000066})
+
+    -- Barra de vida
+    local hp = NX.UI.Bar(pid, {x=500, y=400, width=100, height=6, color=0xFF0000FF, value=100})
+
+    -- Barra de colete
+    local arm = NX.UI.Bar(pid, {x=500, y=412, width=100, height=6, color=0x4488FFFF, value=0})
+
+    -- Label
+    NX.UI.Text(pid, {x=500, y=420, text="HP / Colete", color=0xAAAAAAFF, font=1, size=0.8})
+
+    -- Salvar referências para atualizar depois
+    PlayerData[pid].hud_hp = hp
+    PlayerData[pid].hud_arm = arm
+end)`}</code></pre>
+</div>
