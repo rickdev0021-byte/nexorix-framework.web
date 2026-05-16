@@ -46,7 +46,7 @@ end)`;
 
 	// Banner de atualização
 	let showUpdate = $state(false);
-	const UPDATE_KEY = 'nx_update_v1.0.1';
+	const UPDATE_KEY = 'nx_update_v1.0.2';
 
 	onMount(() => {
 		// Verificar se já viu a atualização
@@ -102,26 +102,28 @@ end)`;
 	<div class="fixed top-4 right-4 z-50 max-w-sm animate-slide-in">
 		<div class="bg-surface border border-primary/30 rounded-lg shadow-lg shadow-primary/5 overflow-hidden">
 			<div class="flex items-center justify-between px-4 py-2.5 border-b border-white/5">
-				<span class="text-xs font-mono text-primary-light">v1.0.1</span>
+				<span class="text-xs font-mono text-primary-light">v1.0.2</span>
 				<button onclick={dismissUpdate} class="text-slate-500 hover:text-white transition-colors text-sm">&times;</button>
 			</div>
 			<div class="px-4 py-3 max-h-60 overflow-y-auto text-xs text-slate-400 space-y-1">
-				<p class="text-white text-sm font-medium mb-2">Novas natives no runtime</p>
-				<p>• nx_CreateDynamicObject / Destroy / IsValid</p>
-				<p>• nx_MoveDynamicObject / Stop / IsMoving</p>
-				<p>• nx_Get/SetDynamicObjectPos</p>
-				<p>• nx_Get/SetDynamicObjectRot</p>
-				<p>• nx_SetDynamicObjectMaterial / MaterialText</p>
-				<p>• nx_SetObjectMaterialText</p>
+				<p class="text-white text-sm font-medium mb-2">PlayerTextDraw natives</p>
+				<p>• nx_CreatePlayerTextDraw</p>
+				<p>• nx_PlayerTextDrawDestroy</p>
+				<p>• nx_PlayerTextDrawShow / Hide</p>
+				<p>• nx_PlayerTextDrawLetterSize / TextSize</p>
+				<p>• nx_PlayerTextDrawAlignment / Color</p>
+				<p>• nx_PlayerTextDrawUseBox / BoxColor</p>
+				<p>• nx_PlayerTextDrawSetShadow / SetOutline</p>
+				<p>• nx_PlayerTextDrawBackgroundColor</p>
+				<p>• nx_PlayerTextDrawFont / SetProportional</p>
+				<p>• nx_PlayerTextDrawSetSelectable</p>
+				<p>• nx_PlayerTextDrawSetPreviewModel / Rot / VehCol</p>
+				<p>• nx_PlayerTextDrawSetString</p>
+				<p class="text-white text-sm font-medium mt-3 mb-1">Anteriores (v1.0.1)</p>
+				<p>• DynamicObject natives completas</p>
 				<p>• nx_RemoveBuildingForPlayer</p>
-				<p>• nx_InterpolateCameraPos / LookAt</p>
-				<p>• nx_AttachCameraToObject</p>
-				<p>• nx_DisableRemoteVehicleCollisions</p>
-				<p>• nx_Set/ClearPlayerWorldBounds</p>
-				<p>• nx_GetPlayerCount</p>
-				<p class="text-white text-sm font-medium mt-3 mb-1">Config</p>
-				<p>• game.use_entry_exit_markers</p>
-				<p>• game.use_stunt_bonuses</p>
+				<p>• Camera interpolation natives</p>
+				<p>• game.use_entry_exit_markers / use_stunt_bonuses</p>
 			</div>
 		</div>
 	</div>
